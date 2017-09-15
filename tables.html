@@ -30,8 +30,8 @@
                     </div>
 
                     <div class="panel-body" id="tableHolder">
-                        <div class="well">
-                        
+                        <div class="well" id="well">
+                            
                         </div>  
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                         <h3 class="panel-title"><strong>Waiting List</strong></h3>
                     </div>
                     <div class="panel-body">
-                        <div class="well">
+                        <div class="well" id="well2">
                             
                         </div>
                     </div>
@@ -55,11 +55,31 @@
     </div>
     <script type="text/javascript">
 
-    $.get("/api/waitList", function(){})
-        .done(function(data) {
-            console.log(data);
-     
-        });
+    $.get("/api/WaitList", function(data){
+        console.log(".get success!");
+
+    }).done(function(data) {
+        console.log(data);
+        for(var i =0; i < data.length; i++){
+           
+        }
+    });
    
+
+    $.get("/api/Waitlist", function(waitlistData){
+        console.log(".get 2 sucess!");
+    }).done(function(data){
+        for(var i =0; i < data.length; i++){
+            
+            var waitListSection =$("<div>");
+            waitListSection.addClass("well");
+            waitListSection.attr("id", "waitListWell -" + i+1)
+            $("#well2").append(waitListSection);
+
+            var tableNumber = i+1;
+
+            $("#well2-" + i + 1).append("<h2><span class='label label-primary'>" + tableNumber + "</span> | " + waitListData[i].cutomerID + "</h2>");
+        }
+    });
   </script>
 </body>
