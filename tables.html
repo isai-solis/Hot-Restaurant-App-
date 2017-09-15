@@ -64,9 +64,10 @@
                 tableSection.addClass("well");
                 tableSection.attr("id", "well" + i+1)
                 $("#tableSection").append(tableSection);
-                var tableNumber = i+1;    
+                var tableNumber = i+1;   
+                $("#well", i+1).append("<h2><span class'label label-primary'>" + tableNumber + "</span> | " + data[i].customer + "</h2>"); 
             }
-            // $("#well", i+1).append("<h2><span class'label label-primary'>" + tableNumber + "</span> | " data[i].customer + "</h2>")
+            
         });
    
   </script>
