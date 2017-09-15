@@ -5,6 +5,7 @@ var path = require("path");
 var app = express();
 var PORT = 3000;
 
+var charecters=[];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,14 +16,14 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
 
-app.get("/", function(req, res) {
+app.get("/index.html", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
     });
-app.get("/makeReservatio", function(req, res) {
+app.get("/reservation.html", function(req, res) {
         res.sendFile(path.join(__dirname, "reservation.html"));
 });
 
-app.get("/viewTables", function(req, res) {
+app.get("/tables.html", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
 
@@ -31,22 +32,22 @@ app.get("/viewTables", function(req, res) {
 
 
 
-
+ 
 app.post("/api/table", function(req, res) {
   var newrequest = req.body;
   newrequest.routeName = newrequest.name.replace(/\s+/g, "").toLowerCase();
 
-console.log(newrequest);
+ console.log(newrequest);
 
-characters.push(newrequest);
+ characters.push(newrequest);
 
-res.json(newrequest);
+ res.json(newrequest);
 });
 
 app.get("/api/WaitList", function(req, res){
     var list = req.params.reservations;
 
-   if(list) {
+    if(list) {
         console.log(list);
         for (var i = 0 ; i < reservations.length; i++){
             if(list === reservations[i]) {
@@ -63,3 +64,5 @@ app.get("/api/WaitList", function(req, res){
 app.listen(PORT, function() {
     console.log("App Listening on port " + PORT);
 })
+
+
