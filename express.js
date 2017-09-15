@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
@@ -32,9 +30,6 @@ app.get("/tables.html", function(req, res) {
 
 
 
-
-
- 
 app.post("/api/table", function(req, res) {
   var newrequest = req.body;
   newrequest.routeName = newrequest.name.replace(/\s+/g, "").toLowerCase();
@@ -45,6 +40,8 @@ app.post("/api/table", function(req, res) {
 
  res.json(newrequest);
 });
+
+
 
 app.get("/api/WaitList", function(req, res){
     var list = req.params.reservations;
@@ -68,4 +65,3 @@ app.listen(PORT, function() {
 })
 
 
->>>>>>> 5b1dfb4bba9e4b2e7e813964f0c94114147e5f3c
