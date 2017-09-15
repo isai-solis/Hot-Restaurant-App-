@@ -46,45 +46,52 @@
                         <h3 class="panel-title"><strong>Waiting List</strong></h3>
                     </div>
                     <div class="panel-body">
-                        <div class="well" id="well2">
-                            
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
+    
+    function tableCall(){
+        $.get("/api/WaitList", function(){})
+            .done(function(data) {
+                console.log(data);
+                for (var i=0; i>data.length; i++){
+                    var tableSection = $("<div>");
+                    tableSection.addClass("well");
+                    tableSection.attr("id", "well" + i+1)
+                    $("#tableSection").append(tableSection);
+                    var tableNumber = i+1;   
+                    $("#well", i+1).append("<h2><span class'label label-primary'>" + tableNumber + "</span> | " + data[i].customer + "</h2>"); 
+                }
+                
+            });
+    }
 
-    $.get("/api/waitList", function(){})
-        .done(function(data) {
-            console.log(data);
-            for (var i=0; i>data.length; i++){
-                var tableSection = $("<div>");
-                tableSection.addClass("well");
-                tableSection.attr("id", "well" + i+1)
-                $("#tableSection").append(tableSection);
-                var tableNumber = i+1;   
-                $("#well", i+1).append("<h2><span class'label label-primary'>" + tableNumber + "</span> | " + data[i].customer + "</h2>"); 
+    function waitCall(){
+        $.get("/api/WaitList", function(data){
+            console.log(".get 2 sucess!");
+        }).done(function(data){
+            console.log("test " + JSON.stringify(data));
+            var Data = JSON.stringify(data);
+            
+            for(var i =0; i < Data.length; i++){
+                
+                var waitListSection =$("<div>");
+                waitListSection.addClass("well");
+                waitListSection.attr("id", "waitListWell -" + i+1)
+                $("#well2").append(waitListSection);
+
+                var tableNumber = i+1;
+
+                $("#well2-" + i + 1).append("<h2><span class='label label-primary'>" + tableNumber + "</span> | " + Data[i].name + "</h2>");
             }
-            
         });
-   
+    }
 
-    $.get("/api/Waitlist", function(waitlistData){
-        console.log(".get 2 sucess!");
-    }).done(function(data){
-        for(var i =0; i < data.length; i++){
-            
-            var waitListSection =$("<div>");
-            waitListSection.addClass("well");
-            waitListSection.attr("id", "waitListWell -" + i+1)
-            $("#well2").append(waitListSection);
-
-            var tableNumber = i+1;
-
-            $("#well2-" + i + 1).append("<h2><span class='label label-primary'>" + tableNumber + "</span> | " + waitListData[i].cutomerID + "</h2>");
-        }
-    });
+    tableCall();
+    waitCall();
   </script>
 </body>

@@ -5,7 +5,7 @@ var path = require("path");
 var app = express();
 var PORT = 3000;
 
-var charecters=[];
+var reservations=[];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,11 +32,11 @@ app.get("/tables.html", function(req, res) {
 
 app.post("/api/table", function(req, res) {
   var newrequest = req.body;
-  newrequest.routeName = newrequest.name.replace(/\s+/g, "").toLowerCase();
+//   newrequest.routeName = newrequest.name.replace(/\s+/g, "").toLowerCase();
 
  console.log(newrequest);
 
- characters.push(newrequest);
+ reservations.push(newrequest);
 
  res.json(newrequest);
 });
